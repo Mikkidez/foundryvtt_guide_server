@@ -184,7 +184,8 @@ sudo reboot
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 ```
-![Устанавливаем NVM](https://i.ibb.co/VpMvSFgs/2026-03-03-17-09-38.png)
+<img width="836" height="453" alt="Снимок экрана от 2026-03-03 17-09-38" src="https://github.com/user-attachments/assets/28e4a79c-eca2-41b5-a7e0-9874edd640f1" />
+
 
 > [!IMPORTANT]
 > После этого для продолжения установки нужно обязательно перезапустить терминал, чтобы NVM начал работать. Если этого не сделать, то установить Node JS не получится, будет выскакивать ошибка.
@@ -193,7 +194,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 ```
 nvm install 25
 ```
-![Устанавливаем Node JS](https://i.ibb.co/rRWzQD6K/2026-03-03-17-21-31.png)
+<img width="1919" height="177" alt="Снимок экрана от 2026-03-03 17-21-31" src="https://github.com/user-attachments/assets/05e09c35-bdce-4734-8ff8-3271f7135dbb" />
+
 
 Как видим, автоматически устанавливается последняя на текущий момент версия Node JS, а именно `25.7.0.`
 
