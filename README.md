@@ -49,290 +49,38 @@
 
 ![Выбираем минимальную конфигурацию для FoundryVTT](https://i.ibb.co/fYTqLKFf/2026-03-03-13-32-00.png)
 
-## Требуемые технические характеристики к серверу
+Лично я использую сервер со следующими характеристиками:
 
-**Минимальные:**
-* 1 vCPU
-* Место на диске: 1GB
-* 2 GB RAM
-* Firewall и настройки безопасности настроены так, что позволяют игрокам зайти на сервер на необходимый порт.
+![Моя конфигурация для FoundryVTT](https://i.ibb.co/5Wpy3mwv/2026-03-03-14-38-12.png)
 
-**Рекомендуемые:**
-* 2 vCPU
-* Место на диске: 1GB
-* 4 GB RAM
-* Firewall и настройки безопасности настроены так, что позволяют игрокам зайти на сервер на необходимый порт.
+Собственно, я решил выбрать именно рекомендованные, а не минимальные характеристики, ну и взял побольше пространства на NVMe-накопителе. Однако, скажу честно, та же нагрузка CPU у меня ни разу не поднималась выше 40-50%, то есть даже 1 ядро CPU без проблем бы справлялось с моим FoundryVTT. Но всё же, меня такие характеристики более чем устраивают. Лучше уж иметь запас по производительности и прочности, чем брать впритык =) Вы же можете выбрать любую конфигурацию, которую сочтете нужной. Тем не менее, я бы не рекомендовал брать сервер с характеристиками меньше этих цифр : **1 ядро CPU, 2 GB RAM, 30 GB NVMe/SSD.**
 
-_Объем памяти, требуемый серверным процессом, зависит от объема данных, включенных в игровую систему и модулей, которые активны в вашем мире. Для более крупных систем или миров, в которых используются более ресурсоемкие модули, потребуется больше оперативной памяти._
+Теперь касательно локации сервера (его физического расположения). Многие хостинг-провайдеры предлагают обширный выбор локаций, как российских, так и европейских. Здесь больше ориентируйтесь на географическое положение вашей основной массы игроков. Если все игроки из РФ/СНГ, то можно смело брать сервер находящийся в Москве или Санкт-Петербурге. Если же у вас много игроков из Европы, то хорошим выбором будет какая-нибудь европейская локация, например, Финляндия, Латвия, Германия и тд. Так что локация, тоже полностью остается на ваше усмотрение. Вот для примера выбор у хостинг-провайдера Beget, услугами которого я пользуюсь на данный момент:
 
-**Рекомендую сервера AEZA, сам ими пользуюсь. По этой [реферальной ссылке](https://aeza.net/?ref=352255) вы получите +15% к пополнению в первые 24 часа.**
+![Локации Beget](https://i.ibb.co/Dg7MzwDm/2026-03-03-14-41-55.png)
 
-## Прежде чем начать
+Следующий нюанс при формировании/выборе сервера под аренду - это операционная система (ОС). Опять же, хостинг-провайдеры обычно предлагают довольно много различных вариантов, среди которых есть и Windows Server, большое количество дистрибутивов Linux, и даже порой MacOS попадается. Здесь опять же, всё на ваше усмотрение, **берите именно то с чем вы хорошо знакомы/с чем вам удобно работать.** Мой выбор - **Ubuntu Server 24.04.** Обоснование очень простое - даже на домашнем ПК у меня года с 2017-го стоит десктопная Ubuntu, я очень хорошо её успел изучить и мне удобно с ней работать. Windows я не пользуюсь уже очень давно, она мне встречается только на работе =) Поэтому на арендуемый сервер, я просто ставлю серверную версию Ubuntu и чувствую себя очень комфортно, так как прекрасно знаком с этой ОС и обслуживать её для меня не составляет труда. Соответственно, и все примеры, скриншоты и прочее в этом руководстве будут именно с этой ОС. Для примера, выбор ОС и различного софта на хостинг-провайдере Beget:
 
-Я могу настроить для вас сервер, а также купить foundry. Пишите в телеграм:
+![Примеры ОС на Beget](https://i.ibb.co/gZn3WMPv/2026-03-03-14-45-42.png)
 
-[@marestore_support](https://t.me/marestore_support)
+Ну и последний нюанс - это цена. Впрочем, сейчас у всех хостинг-провайдеров ценник плюс минус одинаковый, поэтому если вы будете брать в аренду сервер с характеристиками в этом диапазоне : 
 
+- от 1 ядра CPU, 2 GB RAM, 30 GB NVMe/SSD
+- до 2 ядра CPU, 4 GB RAM, 60 GB NVMe/SSD
 
-## Обновление системы
+то ежемесячная плата с вероятностью 99% составит от 450 до 1200 рублей в месяц, в зависимости от того какого хостинг-провайдера, какую географическую локацию и какие технические характеристики сервера вы выберете.
 
-```bash
-sudo apt-get update
-```
+Собственно, на этом наверное всё. Думайте, решайте, определяйтесь! =) А для тех, кто уже определился и бахнул себе сервер - мы едем дальше.
 
-```bash
-sudo apt-get upgrade
-```
 
-```bash
-reboot
-```
+## Основная настройка арендованного сервера + установка на него FoundryVTT
 
-## Установка Node.js
+Итак, приступаем к самому интересному. Вы уже наверное оформили себе сервер, а если еще нет и решили воспользоваться **Beget**, по моему примеру, то могу предоставить вам реферальную ссылку для регистрации у этого хостинг-провайдера - https://beget.com/p2466902/vps
 
-```bash
-curl -fsSL https://deb.nodesource.com/setup_23.x -o nodesource_setup.sh
-```
+Итак, мы оформили сервер, что же нам понадобится для начала процесса настройки, давайте посмотрим:
 
-```bash
-sudo -E bash nodesource_setup.sh
-```
+![Главная страница сервера](https://i.ibb.co/QFtfpBvV/2026-03-03-14-52-57.png)
 
-```bash
-sudo apt-get install -y nodejs
-```
+Собственно, разберем все на примере настройки моего сервера. Так как я давно пользуюсь услугами хостинг-провайдера Beget, то и примеры будут приведены именно с его интерфейсом и остальными нюансами. Впрочем, процесс настройки сервера в терминале/консоли на такой же ОС как у меня (Ubuntu 24.04) не будет ничем отличаться у других хостинг-провайдеров. Поэтому, погнали =)
 
-Проверяем установленные версии
-
-```bash
-node --version
-```
-
-```bash
-npm --version
-```
-
-## Установка zip и unzip
-
-```bash
-sudo apt-get install zip unzip
-```
-
-## Создание пользователя
-
-```bash
-adduser foundry
-```
-
-```bash
-usermod -aG sudo foundry
-```
-
-## Войти под новым пользователем
-
-```bash
-su - foundry
-```
-
-## Установка PM2
-
-```bash
-sudo npm install pm2 -g
-```
-
-# Установка Foundry
-
-## Создание папок
-
-```bash
-mkdir foundryvtt
-```
-
-```bash
-mkdir foundrydata
-```
-
-## Скачивание архива
-
-Для начала надо войти в папку **foundryvtt**
-
-```bash
-cd foundryvtt
-```
-> [!IMPORTANT]
-> Войдите в вашу учетную запись на **https://foundryvtt.com/**, перейти в раздел **Purchased Licenses**, в **Operating System** выбрать **Linux/NodeJS**, затем нажать на кнопку **Timed URL**. В буфер обмена скопируется ссылка.
-
-```bash
-wget -O 'foundry.zip' 'ССЫЛКА_КОТОРУЮ_МЫ_ПОЛУЧИЛИ_ВЫШЕ'
-```
-
-## Распаковка
-
-```bash
-unzip foundry.zip
-```
-
-# Добавление Foundry в PM2
-
-## Установка PM2
-
-```bash
-sudo npm install pm2 -g
-```
-
-## Настрйока PM2
-
-```bash
-pm2 startup
-```
-
-#### Скопировать и выполнить строку, которая выдаст команда выше, должно получится что-то вроде этого:
-
-```bash
-sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
-```
-
-> [!WARNING]
-> _Не копируйте эту строку, вашу строку вам выдаст комманда выше, это лишь пример_
-
-## Добавить команду запуска Foundry в PM2
-
-```bash
-pm2 start "node $HOME/foundryvtt/resources/app/main.js --dataPath=$HOME/foundrydata" --name foundry
-```
-
-**СЕРВЕР РАБОТАЕТ, ДАЛЬНЕЙШИЕ НАСТРОЙКИ ОПЦИОНАЛЬНЫ, ЕСЛИ ИМЕЕТСЯ СВОЙ ДОМЕН**
-
-# Настройка NGINX
-
-## Установка NGINX
-
-```bash
-sudo apt-get install nginx
-```
-
-## Настройка Firewall
-
-```bash
-sudo ufw allow 'Nginx Full'
-```
-
-> [!NOTE]
-> опционально, если еще не сделали это ранее на своем сервере:
-> ```bash
-> sudo ufw allow OpenSSH
-> ```
-
-```bash
-sudo ufw status
-```
-
-```bash
-sudo ufw enable
-```
-
-```bash
-systemctl status nginx
-```
-
-## Создание конфига
-
-```bash
-sudo nano /etc/nginx/sites-available/foundry.example.com
-```
-
-## Скопировать и вставить блок ниже
-
-```bash 
-server {
-
-    # Enter your fully qualified domain name or leave blank
-    server_name             foundry.example.com www.foundry.example.com; #ВАШИ ДОМЕНЫ
-
-    # Listen on port 80 without SSL certificates
-    listen                  80;
-
-    # Sets the Max Upload size to 300 MB
-    client_max_body_size 300M;
-
-    # Proxy Requests to Foundry VTT
-    location / {
-
-        # Set proxy headers
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-
-        # These are important to support WebSockets
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "Upgrade";
-
-        # Make sure to set your Foundry VTT port number
-        proxy_pass http://localhost:30000;
-    }
-}
-```
-
-> [!IMPORTANT]
-> Заменить `foundry.example.com` на ваш домен.
-
-## "Включить" конфиг
-```bash
-sudo ln -s /etc/nginx/sites-available/foundry.example.com /etc/nginx/sites-enabled/
-```
-
-> [!IMPORTANT]
-> Заменить `foundry.example.com` на ваш домен.
-
-## Дополнительная настройка
-```bash
-sudo nano /etc/nginx/nginx.conf
-```
-
-Найти и расскомментировать (убрать '#') перед строчкой:
-
-```bash
-server_names_hash_bucket_size 64;
-```
-
-## Валидация настроек
-
-```bash
-sudo nginx -t
-```
-
-## Перезапуск NGINX
-
-```bash
-sudo systemctl restart nginx
-```
-
-# Настройка SSL
-
-## Установка certbot
-
-```bash
-sudo apt install certbot python3-certbot-nginx
-```
-
-## Создание сертификата для домена
-```bash
-sudo certbot --nginx -d foundry.example.com -d www.foundry.example.com
-```
-
-> [!IMPORTANT]
-> Заменить `foundry.example.com` на ваш домен.
-
-## Перезапуск NGINX
-
-```bash
-sudo systemctl restart nginx
-```
-
-
-## Полезные ссылки
-
-1. [How To Create a Self-Signed SSL Certificate for Nginx in Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-22-04)
-2. [NodeSource Node.js Binary Distributions | Installation Instructions](https://github.com/nodesource/distributions#installation-instructions)
-3. [Ubuntu VM](https://foundryvtt.wiki/en/setup/hosting/Ubuntu-VM)
-4. [Recommended Linux Installation and Usage Guide for FoundryVTT](https://foundryvtt.wiki/en/setup/linux-installation)
+## Заходим на сервер и создаем отдельную учетку
