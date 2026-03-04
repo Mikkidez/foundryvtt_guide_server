@@ -364,7 +364,7 @@ pm2 start "node $HOME/foundryvtt/main.js --dataPath=$HOME/foundrydata" --name Fo
 
 ## Настройки для максимальной производительности и безопасности нашего сервера FoundryVTT
 
-Собственно, суть этих дополнительных насроек заключается в следующем:
+Собственно, суть этих дополнительных настроек заключается в следующем:
 
 <img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/5df13b05-7c70-40ea-9495-63a7dc0d9b05" />
 
