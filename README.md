@@ -531,4 +531,69 @@ systemctl status angie
 ```
 <img width="813" height="322" alt="image" src="https://github.com/user-attachments/assets/62d731e2-25fe-4b83-96a6-6bfc1c19f9a6" />
 
-Как видим из вывода команды - всё отлично, ANGIE работает и ожидает наших дальнейший указаний для него. Этим и займемся!
+Как видим из вывода команды - всё отлично, ANGIE работает и ожидает наших дальнейший указаний для него. Этим и займемся! Нам осталось лишь немного отредактировать основной конфиг самого ANGIE и создать конфиг для самого FoundryVTT. Начнём с того, что откроем этот самый основной конфиг ANGIE и посмотрим, что там в нем есть. Используем команду:
+```
+sudo nano /etc/angie/angie.conf
+```
+<img width="1242" height="798" alt="image" src="https://github.com/user-attachments/assets/6d6091f5-7ae8-4592-8b0b-175bd756466c" />
+
+Собственно, мы видим самый дефолтный основной конфиг ANGIE после установки. Нам необходимо внести сюда несколько изменений для того, чтобы ANGIE корректно работал с нашим FoundryVTT. Я предлагаю не вносить изменения точечно, а сразу скопировать готовый вариант, который я для вас написал:
+```
+user  angie;
+worker_processes  auto;
+worker_rlimit_nofile 65536;
+
+error_log  /var/log/angie/error.log notice;
+pid        /run/angie.pid;
+
+events {
+    worker_connections  65536;
+}
+
+
+http {
+    include       /etc/angie/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    log_format extended '$remote_addr - $remote_user [$time_local] "$request" '
+                        '$status $body_bytes_sent "$http_referer" rt="$request_time" '
+                        '"$http_user_agent" "$http_x_forwarded_for" '
+                        'h="$host" sn="$server_name" ru="$request_uri" u="$uri" '
+                        'ucs="$upstream_cache_status" ua="$upstream_addr" us="$upstream_status" '
+                        'uct="$upstream_connect_time" urt="$upstream_response_time"';
+
+    access_log  /var/log/angie/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    resolver 8.8.8.8;   # DNS-резолвер для проверки домена
+    acme_client letsencrypt https://acme-v02.api.letsencrypt.org/directory;
+
+    # Подключаем активную конфигурацию FoundryVTT;
+    include /etc/angie/sites-enabled/*;
+}
+
+#stream {
+#    include /etc/angie/stream.d/*.conf;
+#}
+```
+В итоге должно получиться вот так 
+
+<img width="1175" height="876" alt="image" src="https://github.com/user-attachments/assets/318638e7-df1f-4621-9907-cd79719581e1" />
+
+Как видите, тут на самом деле отличий от дефолтного конфига совсем немного. Говоря в двух словах, я лишь изменил подход ANGIE на работу с активными ресурсами для большего удобства управления, а также добавил в директиву `http` необходимые строки и DNS-резолвер для активации модуля ACME, так как он необходим для автоматического получаения нашим доменом сертификатов безопасности SSL. Больше нам в общем то тут делать ничего не нужно, поэтому нажимаем `Ctrl+X`, затем `Y` и `Enter`, тем самым сохраняя изменения в основном конфиге ANGIE. После этого обязательно проверяем валидацию, чтобы понять не совершили ли мы где-нибудь ошибок. Используем команду:
+```
+sudo angie -t
+```
+<img width="551" height="110" alt="image" src="https://github.com/user-attachments/assets/b3d4b8cd-07ec-4440-a684-aa5d92835e12" />
+
+Как видим, все отлично, мы не совершили ошибок в синтаксисе конфига и валидация успешна. На предупрежение(warning) пока можем не обращать внимания, так как мы уже активировали модуль ACME в ANGIE, но он пока не понимает для какого домена ему нужно получить сертификаты. Потому и ругается =) Когда мы настроим основной конфиг для нашего FoundryVTT, это предупреждение уйдёт. Что же, давайте приступим!
