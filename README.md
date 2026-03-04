@@ -622,7 +622,7 @@ sudo nano /etc/angie/sites-available/ваш домен
 
 # Upstream для FoundryVTT с поддержкой keep-alive
 upstream foundry_backend {
-    server 217.26.25.244:30000;
+    server ip-адрес вашего сервера:30000;
     keepalive 100;                       # Держим до 100 соединений с FoundryVTT
     keepalive_requests 1000;             # Максимум запросов на одно соединение
     keepalive_timeout 60s;               # Таймаут ожидающего соединения
