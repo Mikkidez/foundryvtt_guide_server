@@ -711,9 +711,9 @@ sudo angie -t
 ```
 <img width="605" height="181" alt="image" src="https://github.com/user-attachments/assets/ebca8ba9-67d7-4f70-aae4-afb4d79fc50a" />
 
-Как видим, все отлично! Но она по прежнему ругается на модуль ACME... Что же давайте уже включим наконец наш FoundryVTT и перезагрузим Angie. Начнём пожалуй с включения, используем команду:
+Как видим, все отлично! Но она по прежнему ругается на модуль ACME... Что же давайте уже включим наконец наш FoundryVTT и перезагрузим Angie. Начнём пожалуй с включения, используем команду (не забудьте подставить ваш домен:
 ```
-sudo ln -s /etc/angie/sites-available/berloga-mika.ru /etc/angie/sites-enabled/
+sudo ln -s /etc/angie/sites-available/ВАШ ДОМЕН /etc/angie/sites-enabled/
 ```
 <img width="799" height="53" alt="image" src="https://github.com/user-attachments/assets/9538c70c-ac6e-4bd0-8a98-4fd8cc6265da" />
 
