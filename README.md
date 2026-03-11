@@ -196,7 +196,6 @@ nvm install 25
 ```
 <img width="1920" height="161" alt="image" src="https://github.com/user-attachments/assets/a58d2223-9625-4e4c-be02-22d0c6a4bd2e" />
 
-
 Как видим, автоматически устанавливается последняя на текущий момент версия Node JS, а именно `25.8.1.`
 
 Кроме того, на данном этапе лучше сразу убедиться в наличии нужной библиотеки, которая очень важна для работы компонентов Node JS. В некоторых дистрибутивах Linux она включена по умолчанию, а в некоторых нет. Поэтому на упреждение используем команду:
@@ -227,9 +226,9 @@ npm install pm2 -g
 
 Как видно из скриншота, всё успешно. Теперь давайте проверим, готова ли к работе Node JS и дополнительные модули, которые мы установили для неё (тот же PM2). Вводим команду:
 ```
-nvm alias default 25.8.0
+nvm alias default 25.8.1
 ```
-<img width="355" height="70" alt="image" src="https://github.com/user-attachments/assets/298c8a78-7789-4fcf-baf6-f1f1183301c5" />
+<img width="366" height="80" alt="image" src="https://github.com/user-attachments/assets/2ead48f2-6002-4c46-bcd4-6d4a21ce901f" />
 
 Все отлично! Теперь переходим к установке самого FoundryVTT.
 
