@@ -181,6 +181,9 @@ sudo reboot
 
 ![Требования к Node JS](https://i.ibb.co/DgVw8Xrd/2026-03-03-15-59-38.png)
 
+> [!IMPORTANT]
+> Как и обычно с выходом новой мажорной версии FoundryVTT вырастут и минимальные версии Node JS и 14 версия FoundryVTT не станет исключением. Однако, вики FoundryVTT обновляется не сразу в день релиза новой версии, а спустя несколько дней или недель. Как только обновится информация на вики - я сразу актуализирую этот скриншот и минимальные версии Node JS. А пока в любом случае рекомендую устанавливать самую последнюю =).
+
 Поэтому есть два варианта. Установить 22.х версию, точнее `22.22.2`; либо, поставить самую актуальную версию Node JS, а именно `25.9.0`. Вопреки информации со скриншота, все версии Node JS выше 23-ей прекрасно работают, и я скажу даже больше, обеспечивают более хорошую производительность. Например у меня на версии `25.9.0` при входе в игровой мир сцена загружается на несколько секунд быстрее, чем на версии `22.22.2`. Впрочем, это еще может зависеть от множества факторов, вашего железа, скорости интернет-соединения и тд. Поэтому решать какую версию ставить - только Вам. Проверить все версии Node JS можно по этой ссылке - https://nodejs.org/en/download/package-manager
 
 Я приведу пример с установкой самой последней версии Node JS, процесс установки других версий отличается лишь изменением цифр в командах и не более.
@@ -257,7 +260,7 @@ cd foundryvtt
 
 Теперь нам надо загрузить сюда архив с последней рекомендованной версией FoundryVTT. Для начала заходим в свой аккаунт на официальном сайте фаундри и переходим в свой профиль, а затем в раздел `Purchased Licenses`
 
-<img width="1203" height="785" alt="image" src="https://github.com/user-attachments/assets/55074f63-4449-4167-a91c-400c92f9374f" />
+<img width="1204" height="649" alt="image" src="https://github.com/user-attachments/assets/8a9def5a-2221-459f-9778-ab98e7e63301" />
 
 Выбираем актуальную рекомендованную версию FoundryVTT, и затем обязательно выбираем в разделе `Operating System` пункт `NodeJS` (это специальная версия FoundryVTT для размещения на серверах, из которой убрано всё лишнее, что используется в десктопных операционных системах. Она обладает меньшим размером, соответственно занимает меньше места на накопителе сервера, и обеспечивает намного большую производительность и стабильность)
 
@@ -265,19 +268,19 @@ cd foundryvtt
 
 После чего нам понадобится кнопка `Timed URL`, которая скопирует в буфер обмена ссылку для загрузки клиента FoundryVTT действительную 5 минут. (именно поэтому я здесь спалю свою ссылку, так как к моменту публикации руководства, она опять же уже давно будет недействительна)
 
-Нам понадобится команда `wget -O FoundryVTT-Node-13.351.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-13.351.zip https://r2.foundryvtt.com/releases/13.351/FoundryVTT-Node-13.351.zip?verify=1783522780-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
+Нам понадобится команда `wget -O FoundryVTT-Node-14.359.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.359.zip https://r2.foundryvtt.com/releases/14.359/FoundryVTT-Node-14.359.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
 
-<img width="1911" height="306" alt="image" src="https://github.com/user-attachments/assets/4e886453-f6c3-4611-84b9-3ae01ef076a0" />
+<img width="1883" height="246" alt="image" src="https://github.com/user-attachments/assets/190a829c-490e-4ef9-9897-82c43f722083" />
 
 И нажимаем `Enter`. У нас скачается нужный нам архив прямо в папку `foundryvtt`. Давайте в этом убедимся, для этого находясь по прежнему в папке `foundryvtt` введем команду:
 ```
 ls
 ```
-<img width="1909" height="345" alt="image" src="https://github.com/user-attachments/assets/36ed1807-5f28-4731-b95f-ea950c8a942f" />
+<img width="264" height="74" alt="image" src="https://github.com/user-attachments/assets/f373088c-4cca-4862-8f23-fabf69427767" />
 
 Как видим, в папке `foundryvtt` сейчас находится только нужный нам архив, который мы только что загрузили. Теперь нам надо его распаковать в эту же папку. Для этого используем команду:
 ```
-unzip FoundryVTT-Node-13.351.zip
+unzip FoundryVTT-Node-14.359.zip
 ```
 <img width="1920" height="956" alt="image" src="https://github.com/user-attachments/assets/5560957c-1498-4c79-a6d5-cf437fff175e" />
 
@@ -285,17 +288,17 @@ unzip FoundryVTT-Node-13.351.zip
 ```
 ls
 ```
-<img width="1319" height="73" alt="image" src="https://github.com/user-attachments/assets/2d582f0f-390e-4b3e-9919-d1573a641c3c" />
+<img width="1314" height="72" alt="image" src="https://github.com/user-attachments/assets/ab97b8b8-72d4-46f7-bb51-12ebef06fb9b" />
 
 Как видим, все хорошо. Помимо архива, теперь в папке `foundryvtt` лежат все необходимые файлы нашего игрового стола. Теперь сам архив можно удалить, чтобы он не занимал место на нашем накопителе. Используем команду:
 ```
-rm FoundryVTT-Node-13.351.zip
+rm FoundryVTT-Node-14.359.zip
 ```
 И затем снова команду:
 ```
 ls
 ```
-<img width="1316" height="127" alt="image" src="https://github.com/user-attachments/assets/f5ba989d-0608-45b9-aff6-cad096dc033e" />
+<img width="1316" height="125" alt="image" src="https://github.com/user-attachments/assets/ff27284e-29dd-49c8-bdab-8ae89125a10d" />
 
 Как видим архив был успешно удалён. Собственно, FoundryVTT мы успешно установили, осталось лишь сделать его автоматически запускаемым. Для этого мы переходим к настройке, установленного выше скрипта PM2.
 
@@ -311,29 +314,29 @@ cd -
 ```
 pm2 startup
 ```
-<img width="1327" height="807" alt="image" src="https://github.com/user-attachments/assets/f94bba54-ee47-48f6-b703-3d8a35d645d7" />
+<img width="1350" height="771" alt="image" src="https://github.com/user-attachments/assets/0660d16c-ac13-4c65-b8b2-ff6443917969" />
 
 В терминале получим следующий вывод, после чего копируем самую нижнюю строку как на скриншоте. Данная строка индивидуальная для каждого сервера, поэтому я не буду приводить тут пример вне скриншота, дабы избежать путанницы. Должно получиться вот так
 
-<img width="1483" height="816" alt="image" src="https://github.com/user-attachments/assets/e5438780-3eb1-4965-997e-555ef4f9879f" />
+<img width="1486" height="780" alt="image" src="https://github.com/user-attachments/assets/cf3e2cec-c93f-47ff-b0fb-db090362e38e" />
 
 И нажимаем `Enter`
 
-<img width="1915" height="949" alt="image" src="https://github.com/user-attachments/assets/7274609a-cd38-4ad8-991c-f700ae4983c8" />
+<img width="1912" height="957" alt="image" src="https://github.com/user-attachments/assets/3335284e-1e2b-4363-9437-53bf665d2eb6" />
 
 В конце длинного вывода терминала должно получиться вот это. Собственно, всё успешно. Теперь нам осталось лишь запустить сам FoundryVTT! Делается это командой:
 ```
 pm2 start "node $HOME/foundryvtt/main.js --dataPath=$HOME/foundrydata" --name FoundryVTT
 ```
-<img width="1128" height="216" alt="image" src="https://github.com/user-attachments/assets/0bfae2f5-3cbb-4a63-882b-c138035c05bf" />
+<img width="1132" height="215" alt="image" src="https://github.com/user-attachments/assets/388e3325-fc28-4ae6-a987-efb1f38a624d" />
 
 Всё супер-пупер! Спустя пару секунд можно набрать команду `pm2 status`, чтобы убедиться, что все поднялось
 
-<img width="1134" height="321" alt="image" src="https://github.com/user-attachments/assets/52bc9544-bd96-4439-b44b-844724f99dad" />
+<img width="1134" height="322" alt="image" src="https://github.com/user-attachments/assets/57bf63a9-cbd8-4f68-9113-5872b32f139e" />
 
 Как видите, объем потребляемой оперативной памяти вырос, а значит FoundryVTT успешно загрузился! Давайте попробуем теперь зайти и проверить. Открываем браузер и переходим по ссылке - `http://ip-адрес нашего сервера:30000/`  То есть в моем случае, ссылка будет выглядеть так - `http://217.26.25.244:30000/`
 
-<img width="1919" height="1009" alt="image" src="https://github.com/user-attachments/assets/026a88a9-696a-4c61-91ee-d2e72bfa09f4" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b4e0cf73-ddc5-4694-a73b-f1ad33f7ed1d" />
 
 Эврика! Всё работает, и уже можно вводить наш ключ от лицензии FoundryVTT и приступать к установке игровой системы, модулей и всего прочего! Кроме того, даже если вы перезагрузите сервер, или он упадет и поднимется без вашего ведома в силу тех или иных причин, то FoundryVTT запустится автоматически, вам ничего для этого делать не потребуется!
 
@@ -371,11 +374,11 @@ pm2 start "node $HOME/foundryvtt/main.js --dataPath=$HOME/foundrydata" --name Fo
 
 Собственно, суть этих дополнительных настроек заключается в следующем:
 
-<img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/5df13b05-7c70-40ea-9495-63a7dc0d9b05" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/79f86624-97c8-4450-887d-9d0c1c10501e" />
 
 Переходить по ссылке с портом не всегда удобно, плюс при отсутствии сертификатов многие браузеры будут постоянно ругаться на незащищенное соединение (всё это видно на скриншоте выше). Кто-то не испытывает от этого дискомфорта, а кому - то подобное может резать глаза… Кроме того, отсутствие соединения по HTTPS не позволяет применить настройки, значительно улучшающие производительность FoundryVTT у ваших игроков. Давайте я покажу вариант, когда у такого сервера FoundryVTT есть настроенный домен и оформлены сертификаты безопасности. Кроме того, при таком варианте производится настройка фаерволла сервера, что дополнительно повышает его устойчивость к взлому и атакам (мало ли конкуренты будут вас дудосить =DDDD) Для этого можете перейти по ссылке моего основного сервера на котором я провожу игры - https://berloga-mika.ru/
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/80b812a7-099e-49fd-ac47-fbaa2195bc27" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5048607d-5b2f-4ee0-b892-30bc674f337d" />
 
 Как видите, никаких айпишников и портов, у сервера есть полноценный адрес и домен в RU сегменте всемирной сети. Кроме того, здесь уже защищенное соединение по HTTPS, и браузеры всем довольны.
 
@@ -445,7 +448,7 @@ sudo apt update
 ```
  sudo apt install angie
 ```
-<img width="941" height="950" alt="image" src="https://github.com/user-attachments/assets/00294f9d-195a-4877-a5f5-419bd592fcc7" />
+<img width="943" height="721" alt="image" src="https://github.com/user-attachments/assets/a48501fc-0e38-4558-a446-3f9409bd9b1a" />
 
 Всё отлично, Angie успешно установился. Переходим к следующему шагу.
 
@@ -534,7 +537,7 @@ P.S. Если вам интересно, вы можете попробоват�
 ```
 systemctl status angie
 ```
-<img width="813" height="322" alt="image" src="https://github.com/user-attachments/assets/62d731e2-25fe-4b83-96a6-6bfc1c19f9a6" />
+<img width="820" height="289" alt="image" src="https://github.com/user-attachments/assets/189fdedf-2bca-4845-a03c-266dbe482d88" />
 
 Как видим из вывода команды - всё отлично, ANGIE работает и ожидает наших дальнейший указаний для него. Этим и займемся! Нам осталось лишь немного отредактировать основной конфиг самого ANGIE и создать конфиг для самого FoundryVTT. Начнём с того, что откроем этот самый основной конфиг ANGIE и посмотрим, что там в нем есть. Используем команду:
 ```
@@ -736,7 +739,7 @@ sudo angie -t
 
 И это победа! Судя по всему все уже работает! Переходим по своим доменам и проверяем, в моем случае это - https://berloga-mika.ru/
 
-<img width="1917" height="1009" alt="image" src="https://github.com/user-attachments/assets/b7c1cccd-3c25-43e3-8717-695c3cab1361" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6ddcb5c7-5b16-4d94-985c-b56e8df3111f" />
 
 Пользуйтесь, наслаждайтесь, играйте и водите игры! А если есть вопросы по руководству или нужна помощь с настройкой, то не стесняйтесь мне их задавать! Постараюсь помочь каждому по мере возможностей. Найти меня можно :
 
