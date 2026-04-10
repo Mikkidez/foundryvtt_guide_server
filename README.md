@@ -266,7 +266,7 @@ cd foundryvtt
 
 Теперь нам надо загрузить сюда архив с последней рекомендованной версией FoundryVTT. Для начала заходим в свой аккаунт на официальном сайте фаундри и переходим в свой профиль, а затем в раздел `Purchased Licenses`
 
-<img width="1204" height="649" alt="image" src="https://github.com/user-attachments/assets/8a9def5a-2221-459f-9778-ab98e7e63301" />
+<img width="1203" height="651" alt="image" src="https://github.com/user-attachments/assets/ba85fd05-6f20-4aea-b3d6-ddddf2d8dcd2" />
 
 Выбираем актуальную рекомендованную версию FoundryVTT, и затем обязательно выбираем в разделе `Operating System` пункт `NodeJS` (это специальная версия FoundryVTT для размещения на серверах, из которой убрано всё лишнее, что используется в десктопных операционных системах. Она обладает меньшим размером, соответственно занимает меньше места на накопителе сервера, и обеспечивает намного большую производительность и стабильность)
 
@@ -274,19 +274,19 @@ cd foundryvtt
 
 После чего нам понадобится кнопка `Timed URL`, которая скопирует в буфер обмена ссылку для загрузки клиента FoundryVTT действительную 5 минут. (именно поэтому я здесь спалю свою ссылку, так как к моменту публикации руководства, она опять же уже давно будет недействительна)
 
-Нам понадобится команда `wget -O FoundryVTT-Node-14.359.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.359.zip https://r2.foundryvtt.com/releases/14.359/FoundryVTT-Node-14.359.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
+Нам понадобится команда `wget -O FoundryVTT-Node-14.360.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.360.zip https://r2.foundryvtt.com/releases/14.360/FoundryVTT-Node-14.360.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
 
-<img width="1883" height="246" alt="image" src="https://github.com/user-attachments/assets/190a829c-490e-4ef9-9897-82c43f722083" />
+<img width="1879" height="244" alt="image" src="https://github.com/user-attachments/assets/e14fa4e9-34ad-40d8-a008-9f1e6ee1bebc" />
 
 И нажимаем `Enter`. У нас скачается нужный нам архив прямо в папку `foundryvtt`. Давайте в этом убедимся, для этого находясь по прежнему в папке `foundryvtt` введем команду:
 ```
 ls
 ```
-<img width="264" height="74" alt="image" src="https://github.com/user-attachments/assets/f373088c-4cca-4862-8f23-fabf69427767" />
+<img width="265" height="74" alt="image" src="https://github.com/user-attachments/assets/dbc9203b-00ca-40ce-a782-65991955d44d" />
 
 Как видим, в папке `foundryvtt` сейчас находится только нужный нам архив, который мы только что загрузили. Теперь нам надо его распаковать в эту же папку. Для этого используем команду:
 ```
-unzip FoundryVTT-Node-14.359.zip
+unzip FoundryVTT-Node-14.360.zip
 ```
 <img width="1920" height="956" alt="image" src="https://github.com/user-attachments/assets/5560957c-1498-4c79-a6d5-cf437fff175e" />
 
@@ -294,17 +294,17 @@ unzip FoundryVTT-Node-14.359.zip
 ```
 ls
 ```
-<img width="1314" height="72" alt="image" src="https://github.com/user-attachments/assets/ab97b8b8-72d4-46f7-bb51-12ebef06fb9b" />
+<img width="1314" height="69" alt="image" src="https://github.com/user-attachments/assets/44c6b058-b8e2-4376-bd62-44e206214721" />
 
 Как видим, все хорошо. Помимо архива, теперь в папке `foundryvtt` лежат все необходимые файлы нашего игрового стола. Теперь сам архив можно удалить, чтобы он не занимал место на нашем накопителе. Используем команду:
 ```
-rm FoundryVTT-Node-14.359.zip
+rm FoundryVTT-Node-14.360.zip
 ```
 И затем снова команду:
 ```
 ls
 ```
-<img width="1316" height="125" alt="image" src="https://github.com/user-attachments/assets/ff27284e-29dd-49c8-bdab-8ae89125a10d" />
+<img width="1312" height="128" alt="image" src="https://github.com/user-attachments/assets/e7bace7c-c5f2-43c2-8abb-fd04351fc616" />
 
 Как видим архив был успешно удалён. Собственно, FoundryVTT мы успешно установили, осталось лишь сделать его автоматически запускаемым. Для этого мы переходим к настройке, установленного выше скрипта PM2.
 
