@@ -210,7 +210,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 ```
 nvm install 26
 ```
-<img width="1920" height="165" alt="image" src="https://github.com/user-attachments/assets/d9128ae6-af31-45e8-aeb4-0689b59b636c" />
+<img width="1919" height="175" alt="image" src="https://github.com/user-attachments/assets/74a6fb3d-f883-4ecc-baaf-c660bb466199" />
 
 Как видим, автоматически устанавливается последняя на текущий момент версия Node JS, а именно `26.0.0`
 
@@ -218,9 +218,9 @@ nvm install 26
 ```
 sudo apt install libatomic1
 ```
-<img width="1196" height="580" alt="image" src="https://github.com/user-attachments/assets/739a0449-a558-487f-b1bd-3462fd0ccb93" />
+<img width="538" height="147" alt="image" src="https://github.com/user-attachments/assets/5588381d-38ee-485b-9a66-b9a827363170" />
 
-Как видим библиотека успешно установилась, и теперь мы со спокойной душой можем ехать дальше =)
+Как видим библиотека уже установлена в Ubuntu 26.04 изначально, и теперь мы со спокойной душой можем ехать дальше. Если же, в вашей вариации ОС данная библиотека отсутствует по каким либо причинам, то данная команда её установит.
 
 ## Установка UNZIP
 
@@ -228,7 +228,7 @@ sudo apt install libatomic1
 ```
 sudo apt install unzip
 ```
-<img width="523" height="141" alt="image" src="https://github.com/user-attachments/assets/3e9164b7-a55e-46da-b78d-07fc2b980563" />
+<img width="504" height="103" alt="image" src="https://github.com/user-attachments/assets/a2226ea2-1a0d-4b8f-af09-418d86a0eda7" />
 
 В моём случае, UNZIP уже был установлен вместе с ОС. У некоторых дистибутивов, он может не входить сразу в ОС, поэтому данная команда установит его на ваш сервер. Идем дальше, последнее что нам осталось сделать, это установить специальный скрипт для Node JS и потом уже будем переходить непосредственно к установке FoundryVTT.
 
@@ -242,9 +242,9 @@ npm install pm2 -g
 
 Как видно из скриншота, всё успешно. Теперь давайте проверим, готова ли к работе Node JS и дополнительные модули, которые мы установили для неё (тот же PM2). Вводим команду:
 ```
-nvm alias default 25.9.0
+nvm alias default 26.0.0
 ```
-<img width="359" height="73" alt="image" src="https://github.com/user-attachments/assets/45e9c6f0-99ef-4cce-b84a-ebdfdc0fc8cb" />
+<img width="355" height="68" alt="image" src="https://github.com/user-attachments/assets/2282442c-30d4-4c26-9fff-0019956bacf8" />
 
 Все отлично! Теперь переходим к установке самого FoundryVTT.
 
@@ -268,7 +268,7 @@ cd foundryvtt
 
 Теперь нам надо загрузить сюда архив с последней рекомендованной версией FoundryVTT. Для начала заходим в свой аккаунт на официальном сайте фаундри и переходим в свой профиль, а затем в раздел `Purchased Licenses`
 
-<img width="1203" height="651" alt="image" src="https://github.com/user-attachments/assets/ba85fd05-6f20-4aea-b3d6-ddddf2d8dcd2" />
+<img width="1206" height="649" alt="image" src="https://github.com/user-attachments/assets/cb44130e-81d5-49dd-b2f5-38a7a8d2ec9c" />
 
 Выбираем актуальную рекомендованную версию FoundryVTT, и затем обязательно выбираем в разделе `Operating System` пункт `NodeJS` (это специальная версия FoundryVTT для размещения на серверах, из которой убрано всё лишнее, что используется в десктопных операционных системах. Она обладает меньшим размером, соответственно занимает меньше места на накопителе сервера, и обеспечивает намного большую производительность и стабильность)
 
@@ -276,19 +276,19 @@ cd foundryvtt
 
 После чего нам понадобится кнопка `Timed URL`, которая скопирует в буфер обмена ссылку для загрузки клиента FoundryVTT действительную 5 минут. (именно поэтому я здесь спалю свою ссылку, так как к моменту публикации руководства, она опять же уже давно будет недействительна)
 
-Нам понадобится команда `wget -O FoundryVTT-Node-14.360.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.360.zip https://r2.foundryvtt.com/releases/14.360/FoundryVTT-Node-14.360.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
+Нам понадобится команда `wget -O FoundryVTT-Node-14.361.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.361.zip https://r2.foundryvtt.com/releases/14.361/FoundryVTT-Node-14.361.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
 
-<img width="1879" height="244" alt="image" src="https://github.com/user-attachments/assets/e14fa4e9-34ad-40d8-a008-9f1e6ee1bebc" />
+<img width="1876" height="306" alt="image" src="https://github.com/user-attachments/assets/0aa36778-6ded-4d2a-b5b2-61f7adff7ac0" />
 
 И нажимаем `Enter`. У нас скачается нужный нам архив прямо в папку `foundryvtt`. Давайте в этом убедимся, для этого находясь по прежнему в папке `foundryvtt` введем команду:
 ```
 ls
 ```
-<img width="265" height="74" alt="image" src="https://github.com/user-attachments/assets/dbc9203b-00ca-40ce-a782-65991955d44d" />
+<img width="267" height="75" alt="image" src="https://github.com/user-attachments/assets/91c37452-2f10-448c-82f0-895576a0f197" />
 
 Как видим, в папке `foundryvtt` сейчас находится только нужный нам архив, который мы только что загрузили. Теперь нам надо его распаковать в эту же папку. Для этого используем команду:
 ```
-unzip FoundryVTT-Node-14.360.zip
+unzip FoundryVTT-Node-14.361.zip
 ```
 <img width="1920" height="956" alt="image" src="https://github.com/user-attachments/assets/5560957c-1498-4c79-a6d5-cf437fff175e" />
 
@@ -296,17 +296,17 @@ unzip FoundryVTT-Node-14.360.zip
 ```
 ls
 ```
-<img width="1314" height="69" alt="image" src="https://github.com/user-attachments/assets/44c6b058-b8e2-4376-bd62-44e206214721" />
+<img width="1319" height="71" alt="image" src="https://github.com/user-attachments/assets/0cf624a8-aaff-4e09-9bb2-470c45175010" />
 
 Как видим, все хорошо. Помимо архива, теперь в папке `foundryvtt` лежат все необходимые файлы нашего игрового стола. Теперь сам архив можно удалить, чтобы он не занимал место на нашем накопителе. Используем команду:
 ```
-rm FoundryVTT-Node-14.360.zip
+rm FoundryVTT-Node-14.361.zip
 ```
 И затем снова команду:
 ```
 ls
 ```
-<img width="1312" height="128" alt="image" src="https://github.com/user-attachments/assets/e7bace7c-c5f2-43c2-8abb-fd04351fc616" />
+<img width="1316" height="125" alt="image" src="https://github.com/user-attachments/assets/cdb50313-58ec-46a9-b020-da7e755fb51d" />
 
 Как видим архив был успешно удалён. Собственно, FoundryVTT мы успешно установили, осталось лишь сделать его автоматически запускаемым. Для этого мы переходим к настройке, установленного выше скрипта PM2.
 
@@ -322,11 +322,11 @@ cd -
 ```
 pm2 startup
 ```
-<img width="1350" height="771" alt="image" src="https://github.com/user-attachments/assets/0660d16c-ac13-4c65-b8b2-ff6443917969" />
+<img width="1330" height="777" alt="image" src="https://github.com/user-attachments/assets/d3f68996-de1a-4adc-81e7-60f33db13988" />
 
 В терминале получим следующий вывод, после чего копируем самую нижнюю строку как на скриншоте. Данная строка индивидуальная для каждого сервера, поэтому я не буду приводить тут пример вне скриншота, дабы избежать путанницы. Должно получиться вот так
 
-<img width="1486" height="780" alt="image" src="https://github.com/user-attachments/assets/cf3e2cec-c93f-47ff-b0fb-db090362e38e" />
+<img width="1487" height="779" alt="image" src="https://github.com/user-attachments/assets/7617211a-edec-40bc-9f4a-d665c5a07ffa" />
 
 И нажимаем `Enter`
 
@@ -336,15 +336,15 @@ pm2 startup
 ```
 pm2 start "node $HOME/foundryvtt/main.js --dataPath=$HOME/foundrydata" --name FoundryVTT
 ```
-<img width="1132" height="215" alt="image" src="https://github.com/user-attachments/assets/388e3325-fc28-4ae6-a987-efb1f38a624d" />
+<img width="1128" height="219" alt="image" src="https://github.com/user-attachments/assets/709ef359-c6a8-4c0f-a24b-bd5498977eec" />
 
 Всё супер-пупер! Спустя пару секунд можно набрать команду `pm2 status`, чтобы убедиться, что все поднялось
 
-<img width="1134" height="322" alt="image" src="https://github.com/user-attachments/assets/57bf63a9-cbd8-4f68-9113-5872b32f139e" />
+<img width="1132" height="327" alt="image" src="https://github.com/user-attachments/assets/86ecca37-4a28-489d-b679-5c8ed1816f2d" />
 
 Как видите, объем потребляемой оперативной памяти вырос, а значит FoundryVTT успешно загрузился! Давайте попробуем теперь зайти и проверить. Открываем браузер и переходим по ссылке - `http://ip-адрес нашего сервера:30000/`  То есть в моем случае, ссылка будет выглядеть так - `http://217.26.25.244:30000/`
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b4e0cf73-ddc5-4694-a73b-f1ad33f7ed1d" />
+<img width="1920" height="1009" alt="image" src="https://github.com/user-attachments/assets/128cd7da-4527-43d8-a6af-f9486884f790" />
 
 Эврика! Всё работает, и уже можно вводить наш ключ от лицензии FoundryVTT и приступать к установке игровой системы, модулей и всего прочего! Кроме того, даже если вы перезагрузите сервер, или он упадет и поднимется без вашего ведома в силу тех или иных причин, то FoundryVTT запустится автоматически, вам ничего для этого делать не потребуется!
 
