@@ -208,7 +208,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 
 Собственно, всё успешно. Теперь устанавливаем сам Node JS. Для этого вводим команду:
 ```
-nvm install 25
+nvm install 26
 ```
 <img width="1920" height="165" alt="image" src="https://github.com/user-attachments/assets/d9128ae6-af31-45e8-aeb4-0689b59b636c" />
 
