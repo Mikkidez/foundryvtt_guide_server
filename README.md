@@ -478,7 +478,7 @@ sudo ufw allow 'OpenSSH'
 ```
 sudo nano /etc/ufw/applications.d/angie
 ```
-<img width="1920" height="1006" alt="image" src="https://github.com/user-attachments/assets/73f4b6ad-0f94-4cf6-a36d-e9aa06aa413a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6e9697b5-c866-4dbc-ac87-c54ea7656086" />
 
 Не пугайтесь, у нас открылся самый обычный текстовый редактор прямо в терминале/командной строке. Сейчас мы именно в нём и пропишем правило для нашего профиля Angie. Вставляем сюда следующий простенький конфиг:
 ```
@@ -499,7 +499,7 @@ ports=80,443/tcp
 ```
 В итоге должно получиться вот так
 
-<img width="1920" height="1006" alt="image" src="https://github.com/user-attachments/assets/ec9788b0-6c69-4f74-b723-0bf4d7f518cf" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/25ca2183-3011-4ef7-ac44-3a6570cbd5b2" />
 
 Теперь сохраняем этот файл, используя комбинации `Ctrl+X`, затем `Y` и `Enter`
 
