@@ -509,7 +509,7 @@ ports=80,443/tcp
 ```
 sudo nano /etc/ufw/applications.d/angie
 ```
-<img width="579" height="325" alt="image" src="https://github.com/user-attachments/assets/945e7a73-9087-4811-a98b-bcdd09036165" />
+<img width="436" height="302" alt="image" src="https://github.com/user-attachments/assets/852c0998-1ad3-4893-a737-1bf50e34e85a" />
 
 Как видим, все сохранилось. Закрываем без сохранения (комбинация `Ctrl+X`) и теперь нам остается лишь обновить правила для UFW, чтобы там появился профиль Angie:
 ```
