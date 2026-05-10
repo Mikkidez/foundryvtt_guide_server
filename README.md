@@ -278,7 +278,7 @@ cd foundryvtt
 
 Нам понадобится команда `wget -O FoundryVTT-Node-14.361.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.361.zip https://r2.foundryvtt.com/releases/14.361/FoundryVTT-Node-14.361.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
 
-<img width="1876" height="306" alt="image" src="https://github.com/user-attachments/assets/0aa36778-6ded-4d2a-b5b2-61f7adff7ac0" />
+<img width="1884" height="297" alt="image" src="https://github.com/user-attachments/assets/ea4890a0-7b8b-462b-b9b7-0a35f944fe67" />
 
 И нажимаем `Enter`. У нас скачается нужный нам архив прямо в папку `foundryvtt`. Давайте в этом убедимся, для этого находясь по прежнему в папке `foundryvtt` введем команду:
 ```
