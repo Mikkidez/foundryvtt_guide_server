@@ -545,13 +545,13 @@ P.S. Если вам интересно, вы можете попробоват�
 ```
 systemctl status angie
 ```
-<img width="820" height="289" alt="image" src="https://github.com/user-attachments/assets/189fdedf-2bca-4845-a03c-266dbe482d88" />
+<img width="959" height="306" alt="image" src="https://github.com/user-attachments/assets/e545f78d-e321-4c10-892d-ba7dfe4e0309" />
 
 Как видим из вывода команды - всё отлично, ANGIE работает и ожидает наших дальнейший указаний для него. Этим и займемся! Нам осталось лишь немного отредактировать основной конфиг самого ANGIE и создать конфиг для самого FoundryVTT. Начнём с того, что откроем этот самый основной конфиг ANGIE и посмотрим, что там в нем есть. Используем команду:
 ```
 sudo nano /etc/angie/angie.conf
 ```
-<img width="1242" height="798" alt="image" src="https://github.com/user-attachments/assets/6d6091f5-7ae8-4592-8b0b-175bd756466c" />
+<img width="1108" height="794" alt="image" src="https://github.com/user-attachments/assets/b90873e3-749a-44b2-886a-89bfef0383ba" />
 
 Собственно, мы видим самый дефолтный основной конфиг ANGIE после установки. Нам необходимо внести сюда несколько изменений для того, чтобы ANGIE корректно работал с нашим FoundryVTT. Я предлагаю не вносить изменения точечно, а сразу скопировать готовый вариант, который я для вас написал:
 ```
