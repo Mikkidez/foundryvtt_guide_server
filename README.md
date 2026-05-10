@@ -630,7 +630,7 @@ sudo mkdir -p /etc/angie/sites-enabled
 ```
 sudo nano /etc/angie/sites-available/ваш домен
 ```
-<img width="1920" height="961" alt="image" src="https://github.com/user-attachments/assets/4a77acee-1947-430c-b6fa-0b8062989a5a" />
+<img width="1920" height="1002" alt="image" src="https://github.com/user-attachments/assets/eb056c66-69c0-48ac-8f73-317f6580c324" />
 
 У нас откроется пустое окно конфига для нашего FoundryVTT. Вставляем туда мой конфиг, но разумеется не забудьте подставить туда ваш домен, вместо моего
 ```
