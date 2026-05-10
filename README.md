@@ -441,7 +441,7 @@ pm2 start "node $HOME/foundryvtt/main.js --dataPath=$HOME/foundrydata" --name Fo
 
 Затем подключим уже непосредственно репозиторий самого Angie:
 ```
- echo "deb https://download.angie.software/angie/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
+ echo "deb https://download.angie.software/angie-nightly/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
     | sudo tee /etc/apt/sources.list.d/angie.list > /dev/null
 ```
 <img width="1139" height="161" alt="image" src="https://github.com/user-attachments/assets/2ed2a711-7d8a-4a25-b7a8-078c6535e337" />
@@ -456,7 +456,7 @@ sudo apt update
 ```
  sudo apt install angie
 ```
-<img width="943" height="721" alt="image" src="https://github.com/user-attachments/assets/a48501fc-0e38-4558-a446-3f9409bd9b1a" />
+<img width="1024" height="720" alt="image" src="https://github.com/user-attachments/assets/f038f26f-5cae-478a-9256-3f1f7e50faf2" />
 
 Всё отлично, Angie успешно установился. Переходим к следующему шагу.
 
