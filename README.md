@@ -691,8 +691,8 @@ server {
     add_header X-Frame-Options SAMEORIGIN;
 }
 ```
-<img width="1920" height="961" alt="image" src="https://github.com/user-attachments/assets/8976d320-7e1a-4c15-8165-1652826ed6b6" />
-<img width="1920" height="961" alt="image" src="https://github.com/user-attachments/assets/c84fdfb0-78d9-4996-ad46-627fbb2dea37" />
+<img width="1920" height="1002" alt="image" src="https://github.com/user-attachments/assets/8dfc0694-c200-4e20-94f1-157809b20c95" />
+<img width="1920" height="1002" alt="image" src="https://github.com/user-attachments/assets/ac2b125f-0a82-48a4-b7e1-0cf0bc7f8712" />
 
 На один скриншот все не влезает, потому пришлось использовать два =) Как видите, данный конфиг довольно сильно отличается от того, который предлагает официальный сайт FoundryVTT. Я постараюсь вкратце рассказать, зачем я внес такие изменения. Кому интересно почитайте, кому нет - можете просто скипнуть =)
 
