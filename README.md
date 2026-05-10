@@ -322,11 +322,11 @@ cd -
 ```
 pm2 startup
 ```
-<img width="1330" height="777" alt="image" src="https://github.com/user-attachments/assets/d3f68996-de1a-4adc-81e7-60f33db13988" />
+<img width="1336" height="777" alt="image" src="https://github.com/user-attachments/assets/c3b8b7a6-9ce2-4dd3-bb6c-1059dda428b4" />
 
 В терминале получим следующий вывод, после чего копируем самую нижнюю строку как на скриншоте. Данная строка индивидуальная для каждого сервера, поэтому я не буду приводить тут пример вне скриншота, дабы избежать путанницы. Должно получиться вот так
 
-<img width="1487" height="779" alt="image" src="https://github.com/user-attachments/assets/7617211a-edec-40bc-9f4a-d665c5a07ffa" />
+<img width="1490" height="777" alt="image" src="https://github.com/user-attachments/assets/e2d4eee8-9291-4fca-930f-ac5f5e73ab8f" />
 
 И нажимаем `Enter`
 
