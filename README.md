@@ -441,10 +441,10 @@ pm2 start "node $HOME/foundryvtt/main.js --dataPath=$HOME/foundrydata" --name Fo
 
 Затем подключим уже непосредственно репозиторий самого Angie:
 ```
- echo "deb https://download.angie.software/angie-nightly/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
+  echo "deb https://download.angie.software/angie/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
     | sudo tee /etc/apt/sources.list.d/angie.list > /dev/null
 ```
-<img width="1139" height="161" alt="image" src="https://github.com/user-attachments/assets/2ed2a711-7d8a-4a25-b7a8-078c6535e337" />
+<img width="1133" height="80" alt="image" src="https://github.com/user-attachments/assets/7074825c-2ad5-4ffd-b79e-6f5fd0b60af3" />
 
 Обновим информацию о пакетах и репозиториях уже знакомой нам командой:
 ```
