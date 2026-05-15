@@ -456,7 +456,7 @@ sudo apt update
 ```
  sudo apt install angie
 ```
-<img width="1024" height="720" alt="image" src="https://github.com/user-attachments/assets/f038f26f-5cae-478a-9256-3f1f7e50faf2" />
+<img width="966" height="726" alt="image" src="https://github.com/user-attachments/assets/9bb2de1a-f77d-458d-9ab9-942e1a3b12fc" />
 
 Всё отлично, Angie успешно установился. Переходим к следующему шагу.
 
