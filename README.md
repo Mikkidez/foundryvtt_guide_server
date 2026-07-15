@@ -479,17 +479,19 @@ ports=80/tcp
 
 [Angie HTTPS]
 title=Web Server (Angie, HTTPS)
-description=Angie is a high-performance web server
-ports=443/tcp
+description=Angie is a high-performance web server (HTTP/2 TCP & HTTP/3 UDP)
+# Открываем 443 и для TCP, и для UDP
+ports=443/tcp|443/udp
 
 [Angie Full]
 title=Web Server (Angie, HTTP + HTTPS)
 description=Angie is a high-performance web server
-ports=80,443/tcp
+# Открываем 80 только для TCP, а 443 — для TCP и UDP
+ports=80/tcp|443/tcp|443/udp
 ```
 В итоге должно получиться вот так
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/25ca2183-3011-4ef7-ac44-3a6570cbd5b2" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9113d736-d3a6-4e8a-8caa-ec07097f9b72" />
 
 Теперь сохраняем этот файл, используя комбинации `Ctrl+X`, затем `Y` и `Enter`
 
@@ -499,7 +501,7 @@ ports=80,443/tcp
 ```
 sudo nano /etc/ufw/applications.d/angie
 ```
-<img width="436" height="302" alt="image" src="https://github.com/user-attachments/assets/852c0998-1ad3-4893-a737-1bf50e34e85a" />
+<img width="642" height="326" alt="image" src="https://github.com/user-attachments/assets/2fdeceb9-e2b6-446c-a574-0135195e67f9" />
 
 Как видим, все сохранилось. Закрываем без сохранения (комбинация `Ctrl+X`) и теперь нам остается лишь обновить правила для UFW, чтобы там появился профиль Angie:
 ```
