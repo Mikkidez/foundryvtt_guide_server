@@ -657,7 +657,7 @@ sudo nano /etc/angie/sites-available/ваш домен
 ```
 # Конфигурация обратного прокси-сервера для FoundryVTT
 
-# Upstream для FoundryVTT с поддержкой keep-alive
+# Upstream для FoundryVTT с поддержкой Keep-Alive
 upstream foundry_backend {
     server ip-адрес вашего сервера:30000;
     keepalive 100;                       # Держим до 100 соединений с FoundryVTT
@@ -668,15 +668,17 @@ upstream foundry_backend {
 # HTTP-сервер (здесь перенаправляем все запросы на HTTPS)
 server {
     listen 80;
-    server_name ваш домен.ru www.ваш домен.ru;
+    server_name ваш_домен.ru www.ваш_домен.ru;
     return 301 https://$host$request_uri;
 }
 
-# HTTPS-сервер с HTTP/2
+# HTTPS-сервер (HTTP/2 + HTTP/3)
 server {
     listen 443 ssl;
+    listen 443 quic reuseport;
     http2 on;                            # Включаем HTTP/2
-    server_name ваш домен.ru www.ваш домен.ru;
+    http3 on;                            # Включаем HTTP/3
+    server_name ваш_домен.ru www.ваш_домен.ru;
 
     # Автоматическое получение и обновление сертификатов Let's Encrypt с помощью ACME
     acme letsencrypt;
@@ -685,64 +687,52 @@ server {
 
     # Современные настройки SSL (отсекаем запросы с устаревшими протоколами)
     ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    ssl_prefer_server_ciphers off;
+
+    # Оптимизация SSL-сессий
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 1d;
+    ssl_session_tickets off;
 
     # Максимальный размер загружаемых файлов в FoundryVTT
     client_max_body_size 300M;
     
+    # Заголовок для работы HTTP/3 (сообщает браузерам игроков о поддержке QUIC)
+    add_header Alt-Svc 'h3=":443"; ma=86400';
+
+    # Заголовки безопасности (рекомендуемые)
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-XSS-Protection "1; mode=block";
+
     # Основной location — проксирование на FoundryVTT
     location / {
-        proxy_pass http://foundry_backend;   # используем наш upstream с keep-alive
+        proxy_pass http://foundry_backend;
 
         # Передаём оригинальные заголовки
         proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
 
         # Поддержка WebSockets в FoundryVTT
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "Upgrade";
+        proxy_set_header Connection $connection_upgrade;
 
+        # Таймауты для стабильных WebSockets сессий
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 3600s;
+        proxy_read_timeout 3600s;
     }
-
-    # Заголовки безопасности (рекомендуемые)
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    add_header X-Content-Type-Options nosniff;
-    add_header X-Frame-Options SAMEORIGIN;
 }
 ```
-<img width="1920" height="1002" alt="image" src="https://github.com/user-attachments/assets/8dfc0694-c200-4e20-94f1-157809b20c95" />
-<img width="1920" height="1002" alt="image" src="https://github.com/user-attachments/assets/ac2b125f-0a82-48a4-b7e1-0cf0bc7f8712" />
+<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/f94cb8de-93ea-4c36-bfd6-0388796f1900" />
+<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/82f9500c-667a-4653-a126-48216af9b3f6" />
 
-На один скриншот все не влезает, потому пришлось использовать два =) Как видите, данный конфиг довольно сильно отличается от того, который предлагает официальный сайт FoundryVTT. Я постараюсь вкратце рассказать, зачем я внес такие изменения. Кому интересно почитайте, кому нет - можете просто скипнуть =)
-
-### 1. Keep-Alive к бэкенду
-В блоке `upstream` настроены `keepalive 100`, `keepalive_requests 1000` и `keepalive_timeout 60s`. Это позволяет повторно использовать TCP-соединения между Angie и сервером FoundryVTT не разрывая их мгновенно. Так как FoundryVTT работает на Node JS и часто обслуживает много запросов от одних и тех же клиентов, в нашем случае - от наших игроков (например, при постоянной загрузке статичных файлов, сцен, артов, музыки или взаимодействии с API FoundryVTT), подобное изменение даёт ощутимый буст производительности, а также снижает нагрузку на CPU игроков и наш бэкенд за счет снижения числа рукопожатий TLS. Особенно это будет заметно у игроков с не самыми мощными ПК и у игроков со слабым интернет-каналом.
-
-### 2. Автоматическое получение и управление SSL-сертификатами через модуль ACME
-Используется встроенный ACME-клиент Angie. Это избавляет от ручного получения и продления сертификатов Let's Encrypt. Переменные `$acme_cert_letsencrypt` и `$acme_cert_key_letsencrypt` автоматически подставляют актуальные пути к сертификатам.
-
-### 3. HTTP/2
-Директива `http2 on;` включает более современный протокол HTTP/2 (вместо дефолтного HTTP1.1), который мультиплексирует запросы в одном соединении, сжимает заголовки и ускоряет загрузку страниц (в нашем случае сцены начинают загружаться в разы быстрее, даже на очень больших картах). Это особенно полезно для FoundryVTT, где одновременно передаётся много мелких ресурсов (изображения, звуки, JSON), а также даёт двойной эффект в связке с **Keep-Alive**.
-
-### 4. Современные настройки TLS
-Эти настройки обеспечивают высокий уровень безопасности и совместимы с современными браузерами.
-`ssl_protocols TLSv1.2 TLSv1.3;` – отключаем устаревшие и небезопасные протоколы (SSLv3, TLSv1.0/1.1). Игроки которые их используют - не смогут подключиться к нашему FoundryVTT.
-`ssl_ciphers HIGH:!aNULL:!MD5;` – используем только надёжное шифрование, исключаем анонимные шифры и MD5. Аналогично, если игроки их используют - они к нам не подключатся.
-
-### 5. Заголовки безопасности
-`HSTS (Strict-Transport-Security)` – заставляет браузеры игроков всегда использовать HTTPS для нашего домена, защищая от SSL-стриппинга.
-`X-Content-Type-Options: nosniff` – предотвращает MIME-сниффинг, повышая защиту от некоторых атак подобного типа.
-`X-Frame-Options: SAMEORIGIN` – запрещает встраивание нашего сайта в `iframe` на других доменах (защита от clickjacking).
-
-### 6. Лимит на размер загружаемых файлов
-`client_max_body_size 300M;` – позволяет загружать большие файлы (модули, сцены, арты) в FoundryVTT, которые иначе были бы отклонены стандартным лимитом в 1 Мегабайт. Вы можете изменять это значение как в меньшую так и большую сторону. У меня стоит 300 Мегабайт (имеется ввиду размер одного файла).
-
-### 7. Принудительное перенаправление HTTP → HTTPS
-Отдельный сервер на 80 порту возвращает 301 редирект на HTTPS. Это гарантирует, что любой доступ по незащищённому протоколу автоматически переводится в защищённый канал.
-
-Фух, даже вкратце, заколебался я всё это расписывать =) Ну зато вы теперь знаете, что именно делает мой конфиг в отличии от дефолтного с сайта FoundryVTT. Как видите, защищённое соединение имеет довольно много преимуществ, по сравнению с подключением игроков по обычному айпишнику. Что же, сохраняем наш конфиг! Используем `Ctrl+X`, затем `Y` и нажимаем `Enter`. После этого сразу же обязательно проверяем валидацию командой:
+На один скриншот все не влезает, потому пришлось использовать два =) Как видите, данный конфиг довольно сильно отличается от того, который предлагает официальный сайт FoundryVTT. Опять же, как я уже упоминал выше, если вам интересно за что отвечает тот или иной блок в этой конфигурации, Вы можете написать мне в Discord в личные сообщения или прямо в треде этого руководства (все ссылки будут чуть ниже в конце руководства), и я с радостью Вам отвечу! Тема эта довольно объемная и специфичная, поэтому не вижу особого смысла раздувать и без того большой гайд =) Что же, сохраняем наш конфиг! Используем `Ctrl+X`, затем `Y` и нажимаем `Enter`. После этого сразу же обязательно проверяем валидацию командой:
 ```
 sudo angie -t
 ```
