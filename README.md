@@ -556,6 +556,7 @@ pid        /run/angie.pid;
 
 events {
     worker_connections  65536;
+    # multi_accept on;
 }
 
 
@@ -563,6 +564,7 @@ http {
     include       /etc/angie/mime.types;
     default_type  application/octet-stream;
 
+    # Форматы логов
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
@@ -576,17 +578,43 @@ http {
 
     access_log  /var/log/angie/access.log  main;
 
-    sendfile        on;
-    #tcp_nopush     on;
+    # Оптимизация сетевой нагрузки
+    sendfile         on;
+    tcp_nopush       on;   # Оптимизируем отправку файлов
+    tcp_nodelay      on;   # Убираем задержки в отправке пакетов (важно для WebSockets)
 
     keepalive_timeout  65;
 
-    #gzip  on;
+    # Динамическая поддержка WebSockets и Keep-Alive
+    map $http_upgrade $connection_upgrade {
+        default upgrade;
+        ''      '';
+    }
 
-    resolver 8.8.8.8;   # DNS-резолвер для проверки домена
+    # gzip-сжатие (Настроено под FoundryVTT)
+    gzip on;
+    gzip_disable "msie6";
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 5;
+    gzip_types
+        text/plain
+        text/css
+        application/json
+        application/javascript
+        text/xml
+        application/xml
+        application/xml+rss
+        text/javascript
+        image/svg+xml;
+
+    # ACME и SSL настройки
+    resolver 8.8.8.8 1.1.1.1 valid=300s; # DNS-резолверы Google и CloudFlare для проверки домена
+    resolver_timeout 5s;
+    
     acme_client letsencrypt https://acme-v02.api.letsencrypt.org/directory;
 
-    # Подключаем активную конфигурацию FoundryVTT;
+    # Подключаем активную конфигурацию FoundryVTT
     include /etc/angie/sites-enabled/*;
 }
 
@@ -596,9 +624,10 @@ http {
 ```
 В итоге должно получиться вот так 
 
-<img width="1108" height="865" alt="image" src="https://github.com/user-attachments/assets/d08810c1-751f-4614-9bd8-7dff5330ac4d" />
+<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/42ae6fbf-2623-477b-9a0a-5a310c2f19c1" />
+<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/48d98023-77a8-421f-9bc1-4e7581ac7293" />
 
-Как видите, тут на самом деле отличий от дефолтного конфига совсем немного. Говоря в двух словах, я лишь изменил подход ANGIE на работу с активными ресурсами для большего удобства управления, а также добавил в директиву `http` необходимые строки и DNS-резолвер для активации модуля ACME, так как он необходим для автоматического получения нашим доменом сертификатов безопасности SSL. Больше нам в общем то тут делать ничего не нужно, поэтому нажимаем `Ctrl+X`, затем `Y` и `Enter`, тем самым сохраняя изменения в основном конфиге ANGIE. После этого обязательно проверяем валидацию, чтобы понять не совершили ли мы где-нибудь ошибок. Используем команду:
+Как видите, тут уже есть отличия от дефолтного конфига, причем довольно много (даже не влезло на один скриншот). Если Вам интересно чем отличается мой вариант, от дефолтного конфига Angie, то вы всегда можете написать мне в Discord (контакты будут ниже в конце руководства) как в ЛС, так и в треде этого руководства, и я с радостью вам отвечу и расскажу все более подробно! =) Сохраняем наш конфиг, используем `Ctrl+X`, затем `Y` и нажимаем `Enter`. После этого обязательно проверяем валидацию, чтобы понять не совершили ли мы где-нибудь ошибок. Используем команду:
 ```
 sudo angie -t
 ```
