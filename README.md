@@ -188,7 +188,7 @@ sudo reboot
 Итак, ОС сервера обновлена, едем дальше. Следующий шаг - это установка Node JS, который необходим для работы FoundryVTT на системах Linux. Для начала установим nvm-менеджер, который позволяет управлять различными версиями Node JS на серверах. Для этого вводим команду:
 
 ```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
 ```
 <img width="836" height="453" alt="Снимок экрана от 2026-03-03 17-09-38" src="https://github.com/user-attachments/assets/28e4a79c-eca2-41b5-a7e0-9874edd640f1" />
 
