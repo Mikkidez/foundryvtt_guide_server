@@ -258,7 +258,7 @@ cd foundryvtt
 
 Теперь нам надо загрузить сюда архив с последней рекомендованной версией FoundryVTT. Для начала заходим в свой аккаунт на официальном сайте фаундри и переходим в свой профиль, а затем в раздел `Purchased Licenses`
 
-<img width="1210" height="759" alt="image" src="https://github.com/user-attachments/assets/3dc03e3f-483c-424b-960a-2a9dd63e7ba5" />
+<img width="1208" height="777" alt="image" src="https://github.com/user-attachments/assets/f271e147-6b7f-431c-95a1-a0f148460d73" />
 
 Выбираем актуальную рекомендованную версию FoundryVTT, и затем обязательно выбираем в разделе `Operating System` пункт `NodeJS` (это специальная версия FoundryVTT для размещения на серверах, из которой убрано всё лишнее, что используется в десктопных операционных системах. Она обладает меньшим размером, соответственно занимает меньше места на накопителе сервера, и обеспечивает намного большую производительность и стабильность)
 
@@ -266,7 +266,7 @@ cd foundryvtt
 
 После чего нам понадобится кнопка `Timed URL`, которая скопирует в буфер обмена ссылку для загрузки клиента FoundryVTT действительную 5 минут. (именно поэтому я здесь спалю свою ссылку, так как к моменту публикации руководства, она опять же уже давно будет недействительна)
 
-Нам понадобится команда `wget -O FoundryVTT-Node-14.366.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.366.zip https://r2.foundryvtt.com/releases/14.366/FoundryVTT-Node-14.366.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
+Нам понадобится команда `wget -O FoundryVTT-Node-14.367.zip LINK` , где вместо `LINK` нужно вставить ссылку загрузки, которая копируется в буфер обмена после нажатия на кнопку `Timed URL` на скрине выше. В моем случае получается так `wget -O FoundryVTT-Node-14.367.zip https://r2.foundryvtt.com/releases/14.367/FoundryVTT-Node-14.367.zip?verify=7423526751-SdNkRbIhJK3XdRdTf9T02nP1mv%7B%2B7eNjmn9uSJVRYIM%3D`
 
 <img width="1884" height="297" alt="image" src="https://github.com/user-attachments/assets/ea4890a0-7b8b-462b-b9b7-0a35f944fe67" />
 
@@ -278,7 +278,7 @@ ls
 
 Как видим, в папке `foundryvtt` сейчас находится только нужный нам архив, который мы только что загрузили. Теперь нам надо его распаковать в эту же папку. Для этого используем команду:
 ```
-unzip FoundryVTT-Node-14.366.zip
+unzip FoundryVTT-Node-14.367.zip
 ```
 <img width="1920" height="956" alt="image" src="https://github.com/user-attachments/assets/5560957c-1498-4c79-a6d5-cf437fff175e" />
 
@@ -290,7 +290,7 @@ ls
 
 Как видим, все хорошо. Помимо архива, теперь в папке `foundryvtt` лежат все необходимые файлы нашего игрового стола. Теперь сам архив можно удалить, чтобы он не занимал место на нашем накопителе. Используем команду:
 ```
-rm FoundryVTT-Node-14.366.zip
+rm FoundryVTT-Node-14.367.zip
 ```
 И затем снова команду:
 ```
