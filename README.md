@@ -644,7 +644,7 @@ http {
         image/svg+xml;
 
     # ACME и SSL настройки
-    resolver 8.8.8.8 1.1.1.1 valid=300s; # DNS-резолверы Google и CloudFlare для проверки домена
+    resolver 8.8.8.8 1.1.1.1 [2001:4860:4860::8888] [2606:4700:4700::1111] valid=300s; # DNS-резолверы Google и CloudFlare для проверки домена
     resolver_timeout 5s;
     
     acme_client letsencrypt https://acme-v02.api.letsencrypt.org/directory;
@@ -659,8 +659,8 @@ http {
 ```
 В итоге должно получиться вот так 
 
-<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/42ae6fbf-2623-477b-9a0a-5a310c2f19c1" />
-<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/48d98023-77a8-421f-9bc1-4e7581ac7293" />
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/0dff7b9d-5983-4673-9e72-cfce1d26cf82" />
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/22e20a84-de7a-4c28-94d0-253a51e52eef" />
 
 Как видите, тут уже есть отличия от дефолтного конфига, причем довольно много (даже не влезло на один скриншот). Если Вам интересно чем отличается мой вариант от дефолтного конфига Angie, то вы всегда можете написать мне в Discord (контакты будут ниже в конце руководства) как в ЛС, так и в треде этого руководства, и я с радостью вам отвечу и расскажу все более подробно! =) Сохраняем наш конфиг, используем `Ctrl+X`, затем `Y` и нажимаем `Enter`. После этого обязательно проверяем валидацию, чтобы понять не совершили ли мы где-нибудь ошибок. Используем команду:
 ```
