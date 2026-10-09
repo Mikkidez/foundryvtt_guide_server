@@ -694,7 +694,7 @@ sudo nano /etc/angie/sites-available/ваш домен
 
 # Upstream для FoundryVTT с поддержкой Keep-Alive
 upstream foundry_backend {
-    server ip-адрес вашего сервера:30000;
+    server 127.0.0.1:30000;
     keepalive 100;                       # Держим до 100 соединений с FoundryVTT
     keepalive_requests 1000;             # Максимум запросов на одно соединение
     keepalive_timeout 60s;               # Таймаут ожидающего соединения
@@ -703,6 +703,7 @@ upstream foundry_backend {
 # HTTP-сервер (здесь перенаправляем все запросы на HTTPS)
 server {
     listen 80;
+    listen [::]:80;
     server_name ваш_домен.ru www.ваш_домен.ru;
     return 301 https://$host$request_uri;
 }
@@ -711,6 +712,8 @@ server {
 server {
     listen 443 ssl;
     listen 443 quic reuseport;
+    listen [::]:443 ssl;
+    listen [::]:443 quic;
     http2 on;                            # Включаем HTTP/2
     http3 on;                            # Включаем HTTP/3
     server_name ваш_домен.ru www.ваш_домен.ru;
@@ -763,8 +766,8 @@ server {
     }
 }
 ```
-<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/f94cb8de-93ea-4c36-bfd6-0388796f1900" />
-<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/82f9500c-667a-4653-a126-48216af9b3f6" />
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/4e1ef77e-fd64-4c09-aaa6-4ecf2031f89a" />
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/10833609-e31a-47f0-acc9-bfd282f62b3c" />
 
 На один скриншот все не влезает, потому пришлось использовать два =) Как видите, данный конфиг довольно сильно отличается от того, который предлагает официальный сайт FoundryVTT. Опять же, как я уже упоминал выше, если вам интересно за что отвечает тот или иной блок в этой конфигурации, Вы можете написать мне в Discord в личные сообщения или прямо в треде этого руководства (все ссылки будут чуть ниже в конце руководства), и я с радостью Вам отвечу! Тема эта довольно объемная и специфичная, поэтому не вижу особого смысла раздувать и без того большой гайд =) Что же, сохраняем наш конфиг! Используем `Ctrl+X`, затем `Y` и нажимаем `Enter`. После этого сразу же обязательно проверяем валидацию командой:
 ```
