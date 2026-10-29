@@ -188,7 +188,7 @@ sudo reboot
 Итак, ОС сервера обновлена, едем дальше. Следующий шаг - это установка Node JS, который необходим для работы FoundryVTT на системах Linux. Для начала установим nvm-менеджер, который позволяет управлять различными версиями Node JS на серверах. Для этого вводим команду:
 
 ```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
 ```
 <img width="836" height="453" alt="Снимок экрана от 2026-03-03 17-09-38" src="https://github.com/user-attachments/assets/28e4a79c-eca2-41b5-a7e0-9874edd640f1" />
 
@@ -200,9 +200,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
 ```
 nvm install 26
 ```
-<img width="2560" height="168" alt="image" src="https://github.com/user-attachments/assets/29ac093c-7d4b-4f25-9971-2ebed85aa0d6" />
+<img width="2560" height="160" alt="image" src="https://github.com/user-attachments/assets/36d7cae8-7612-487e-a9b6-cb6110e424dd" />
 
-Как видим, автоматически устанавливается последняя на текущий момент версия Node JS, а именно `26.12.1`
+Как видим, автоматически устанавливается последняя на текущий момент версия Node JS, а именно `26.13.0`
 
 Кроме того, на данном этапе лучше сразу убедиться в наличии нужной библиотеки, которая очень важна для работы компонентов Node JS. В некоторых дистрибутивах Linux она включена по умолчанию, а в некоторых нет. Поэтому на упреждение используем команду:
 ```
@@ -232,9 +232,9 @@ npm install pm2 -g
 
 Как видно из скриншота, всё успешно. Теперь давайте проверим, готова ли к работе Node JS и дополнительные модули, которые мы установили для неё (тот же PM2). Вводим команду:
 ```
-nvm alias default 26.12.1
+nvm alias default 26.13.0
 ```
-<img width="363" height="79" alt="image" src="https://github.com/user-attachments/assets/dbf317bb-b641-4c56-aec7-02bbce36ea27" />
+<img width="368" height="74" alt="image" src="https://github.com/user-attachments/assets/2b6a3c20-bb23-4106-9b03-f28d2e2c5098" />
 
 Все отлично! Теперь переходим к установке самого FoundryVTT.
 
