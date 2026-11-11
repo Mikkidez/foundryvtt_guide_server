@@ -327,15 +327,15 @@ cd -
 ```
 pm2 startup
 ```
-<img width="1336" height="777" alt="image" src="https://github.com/user-attachments/assets/c3b8b7a6-9ce2-4dd3-bb6c-1059dda428b4" />
+<img width="1364" height="777" alt="image" src="https://github.com/user-attachments/assets/f490213a-ac25-4074-82b6-5fc79ee23916" />
 
 В терминале получим следующий вывод, после чего копируем самую нижнюю строку как на скриншоте. Данная строка индивидуальная для каждого сервера, поэтому я не буду приводить тут пример вне скриншота, дабы избежать путанницы. Должно получиться вот так
 
-<img width="1490" height="777" alt="image" src="https://github.com/user-attachments/assets/e2d4eee8-9291-4fca-930f-ac5f5e73ab8f" />
+<img width="1506" height="780" alt="image" src="https://github.com/user-attachments/assets/95165fbf-3c9b-42c1-96d9-ddfb5f19f721" />
 
 И нажимаем `Enter`
 
-<img width="1912" height="957" alt="image" src="https://github.com/user-attachments/assets/3335284e-1e2b-4363-9437-53bf665d2eb6" />
+<img width="2061" height="1362" alt="image" src="https://github.com/user-attachments/assets/309b9c07-7668-41d9-aeee-7140e4881df7" />
 
 В конце длинного вывода терминала должно получиться вот это. Собственно, всё успешно. Теперь нам осталось лишь запустить сам FoundryVTT! Делается это командой:
 ```
