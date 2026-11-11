@@ -247,9 +247,9 @@ npm install pm2 -g
 
 Как видно из скриншота, всё успешно. Теперь давайте проверим, готова ли к работе Node JS и дополнительные модули, которые мы установили для неё (тот же PM2). Вводим команду:
 ```
-nvm alias default 26.13.0
+nvm alias default 26.13.1
 ```
-<img width="368" height="74" alt="image" src="https://github.com/user-attachments/assets/2b6a3c20-bb23-4106-9b03-f28d2e2c5098" />
+<img width="363" height="72" alt="image" src="https://github.com/user-attachments/assets/1577e4b5-e4b5-49ff-a596-c78ae2453f13" />
 
 Все отлично! Теперь переходим к установке самого FoundryVTT.
 
