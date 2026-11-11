@@ -203,9 +203,9 @@ sudo reboot
 Итак, ОС сервера обновлена, едем дальше. Следующий шаг - это установка Node JS, который необходим для работы FoundryVTT на системах Linux. Для начала установим nvm-менеджер, который позволяет управлять различными версиями Node JS на серверах. Для этого вводим команду:
 
 ```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.41.0/install.sh | bash
 ```
-<img width="836" height="453" alt="Снимок экрана от 2026-03-03 17-09-38" src="https://github.com/user-attachments/assets/28e4a79c-eca2-41b5-a7e0-9874edd640f1" />
+<img width="835" height="449" alt="image" src="https://github.com/user-attachments/assets/510c96ca-f3c7-4d37-b0e3-9a2aea11e0de" />
 
 
 > [!IMPORTANT]
@@ -215,9 +215,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
 ```
 nvm install 26
 ```
-<img width="2560" height="160" alt="image" src="https://github.com/user-attachments/assets/36d7cae8-7612-487e-a9b6-cb6110e424dd" />
+<img width="2561" height="180" alt="image" src="https://github.com/user-attachments/assets/913155f5-c921-4afe-bcfb-26500548e921" />
 
-Как видим, автоматически устанавливается последняя на текущий момент версия Node JS, а именно `26.13.0`
+Как видим, автоматически устанавливается последняя на текущий момент версия Node JS, а именно `26.13.1`
 
 Кроме того, на данном этапе лучше сразу убедиться в наличии нужной библиотеки, которая очень важна для работы компонентов Node JS. В некоторых дистрибутивах Linux она включена по умолчанию, а в некоторых нет. Поэтому на упреждение используем команду:
 ```
