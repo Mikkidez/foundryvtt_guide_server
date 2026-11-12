@@ -632,17 +632,17 @@ sudo rsync -avz --delete --progress /home/mik/Data/ mik@217.12.38.19:/home/mik/f
 
 Начнём мы с того, что скачаем открытый ключ репозитория Angie для проверки подлинности пакетов:
 ```
- sudo curl -o /etc/apt/trusted.gpg.d/angie-signing.gpg \
+  sudo curl -o /etc/apt/trusted.gpg.d/angie-signing.gpg \
             https://angie.software/keys/angie-signing.gpg
 ```
-<img width="651" height="125" alt="image" src="https://github.com/user-attachments/assets/ffa8b4ee-e47c-4ce5-b70c-4650d184787b" />
+<img width="667" height="145" alt="image" src="https://github.com/user-attachments/assets/6805f838-bf85-4ed5-ae48-4ad8bca554ee" />
 
 Затем подключим уже непосредственно репозиторий самого Angie:
 ```
-  echo "deb https://download.angie.software/angie/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
+   echo "deb https://download.angie.software/angie/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
     | sudo tee /etc/apt/sources.list.d/angie.list > /dev/null
 ```
-<img width="1133" height="80" alt="image" src="https://github.com/user-attachments/assets/7074825c-2ad5-4ffd-b79e-6f5fd0b60af3" />
+<img width="1129" height="176" alt="image" src="https://github.com/user-attachments/assets/9c591f3b-54e6-4f75-856c-5af812764cae" />
 
 Обновим информацию о пакетах и репозиториях уже знакомой нам командой:
 ```
@@ -654,7 +654,7 @@ sudo apt update
 ```
  sudo apt install angie
 ```
-<img width="966" height="726" alt="image" src="https://github.com/user-attachments/assets/9bb2de1a-f77d-458d-9ab9-942e1a3b12fc" />
+<img width="974" height="718" alt="image" src="https://github.com/user-attachments/assets/8307a5ec-183e-447c-8b45-3f05394fc47d" />
 
 Всё отлично, Angie успешно установился. Переходим к следующему шагу.
 
